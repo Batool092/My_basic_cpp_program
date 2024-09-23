@@ -1,0 +1,308 @@
+//DSA Assignment Project
+
+#include <iostream>
+#include<string.h>
+#include<conio.h>
+#include<iomanip>
+using namespace std;
+
+main()
+{
+	string password, username;
+	char chr;
+    int attempts = 3;
+
+        // Login with password
+    while (attempts > 0)
+    {
+    	cout<<"Enter username: ";
+    	cin>>username;
+        cout<<"Enter password: ";
+        chr=getch();
+        while(chr!=13)
+        {
+        	password.push_back(chr);
+        	cout<<"*";
+        	chr=getch();
+		}
+        if (username=="amna" || password=="0047")
+        {
+            break;
+        }
+        else
+        {
+            attempts--;
+            cout<<"Incorrect password. Attempts remaining: " << attempts << endl;
+        }
+        }
+        cout<<endl;
+        if (attempts == 0)
+        {
+            cout<<"Maximum attempts reached. Exiting program." << endl;
+            return 1;
+        }
+        //idhr sy menu shuru hota hai
+       char ch;
+       int size;
+       cout<<"Enter the size of the array: ";
+    	cin>>size;
+       do
+	   {
+	   	int i=1;
+       	int choice;
+       	cout<<"               Names                                 "<<setw(10)<<"number"<<endl;
+	    cout<<"               Add Data                            "<<setw(10)<<" 1"<<endl;
+	    cout<<"               Traverse Data                       "<<setw(10)<<" 2"<<endl;
+	    cout<<"               Search Data                         "<<setw(10)<<" 3"<<endl;
+	    cout<<"               Update Data                         "<<setw(10)<<" 4"<<endl;
+	    cout<<"               Delete Data                         "<<setw(10)<<" 5"<<endl;
+	    cout<<"               Min Value                           "<<setw(10)<<" 6"<<endl;
+	    cout<<"               Max Value                           "<<setw(10)<<" 7"<<endl;
+	    cout<<"               2nd-Largest value                   "<<setw(10)<<" 8"<<endl;
+	    
+	    cout<<"\nEnter your choice : ";
+	    cin>>choice;
+	    
+        int arr[size];
+        
+        
+        if(i==1 && choice !=1)
+        {
+        	cout<<endl<<"Invalid choice. you have to enter data first. "<<endl;
+        	continue;
+		}
+	    else if(choice==1)    //array main data add krna hai
+	    {
+            cout<<"Enter "<<size<<" elements: "<<endl;
+            for (int a = 0; a < size; a++) 
+			{
+                cout<<"Enter element " <<a+1<< ": ";
+                cin>>arr[a];
+            }
+
+          cout<<"Data Added Successfully";
+		}
+		
+		else if(choice==2)   //traversing krni hai 
+		{
+			
+		    cout<<"Enter "<<size<<" elements: "<<endl;      //data add krna yahan
+            for (int a=0; a<size; a++) 
+			{
+                cout<<"Enter element "<<a+1<<": ";
+                cin>>arr[a];
+            }
+
+			cout<<"The elements in the array are: ";
+            for (int a= 0; a<size; a++) 
+			{
+                cout<<arr[a]<<" ";          // Traversing or phir printing each element
+            }
+           cout<<endl;
+		}
+		
+		else if(choice==3)          // search any number from an array
+		{
+			int searchValue,found=-1;
+			cout << "Enter " << size << " elements: " << endl;      //data add krna yahan
+            for (int a=0; a<size; a++) 
+			{
+                cout<<"Enter element " <<a+1<<": ";
+                cin>>arr[a];
+            }
+			
+			cout << "Enter the value to search for: ";    //yahan pr search ho ga
+            cin >> searchValue;
+
+            for (int a=0; a<size; a++) 
+			{
+                if (arr[a]==searchValue) 
+				{
+                   found = a; 
+                   break;     
+                }
+            }
+
+            if (found != -1) 
+			{
+               cout<<"Value "<<searchValue<<" found at index "<<found<<"."<<endl;
+            }
+		    else 
+			{
+                cout<<"Value "<<searchValue<<" not found in the array."<<endl;
+            }
+
+		}
+		
+		else if(choice==4)
+		{
+			int size, old, newvalue, found = 0;
+		    int arr[size];
+		    cout<<"Enter size : ";
+		    cin>>size;
+		 
+            cout<< "Enter "<<size<<" elements: "<<endl;      //data add krna yahan
+            for (int a=0; a<size; a++) 
+			{
+                cout<<"Enter element "<<a+1<<" : ";
+                cin>>arr[a];
+            }
+            
+            cout<<"Enter the value to update: ";
+            cin>>old;
+
+            for (int a=0;a<size;a++) 
+			{
+                if (arr[a] == old) 
+				{
+                   found = a; // Store the index where the value is found
+                   break;
+                }
+            }
+
+            if (found != 0) 
+			{
+              cout << "Enter the new value: ";
+              cin >> newvalue;
+              arr[found] = newvalue; 
+              
+              cout << "Array after update: ";
+              for (int a= 0; a<size; a++) 
+			  {
+                cout<<arr[a]<<" ";
+              }
+              cout<<endl;
+            } 
+			else 
+			{
+                cout << "Value " << old << " not found in the array." << endl;
+            }
+	    }
+		else if(choice==5)
+		{
+			int deleteValue, found = 0;
+
+            cout<<"Enter "<<size<<" elements: "<< endl;
+            for (int a=0; a<size; a++) 
+			{
+              cout<<"Enter element " <<a+1<<": ";
+              cin>>arr[a];
+            }
+
+            cout<<"Enter the value to delete: ";
+            cin>>deleteValue;
+
+           for (int a = 0; a < size; a++) //jo value del krni hai uss ko yahan search krna hai phly
+		    {
+              if (arr[a] == deleteValue) 
+		      {
+                found = 1; // Value found
+                // Shift elements to the left to delete the element
+                for (int b = a; b < size - 1; b++) 
+				{
+                  arr[b]=arr[b+1];
+                }
+                size--; // Decrease the size of the array
+                break;
+               }
+            }
+
+            if (found == 1) 
+	        {
+              cout<<"Array after deletion: ";
+              for (int a=0; a<size; a++)
+		      {
+                cout<<arr[a]<<" ";
+              }
+              cout<<endl;
+            }
+		    else 
+	        {
+              cout<<"Value "<<deleteValue<<" not found in the array."<< endl;
+            }
+        
+		}
+		//Finding Min value 
+		else if(choice==6)
+		{
+			int min;
+			cout<< "Enter "<<size<<" elements: "<<endl; 
+			     //data add krna yahan
+            for (int a=0; a<size; a++) 
+			{
+                cout<<"Enter element "<<a+1<<" : ";
+                cin>>arr[a];
+            }
+            min=arr[0];
+            
+            for(int b=0;b<size;b++)
+            {
+            	if(min>arr[b])
+            	{
+            		min=arr[b];
+				}
+			}
+			cout<<"\n The Minimum number is : "<<min<<endl;
+			
+		}
+		//finding Max value
+		else if(choice==7)
+		{
+			int max;
+			cout<< "Enter "<<size<<" elements: "<<endl; 
+			     //data add krna yahan
+            for (int a=0; a<size; a++) 
+			{
+                cout<<"Enter element "<<a+1<<" : ";
+                cin>>arr[a];
+            }
+            max=arr[0];
+            
+            for(int b=0;b<size;b++)
+            {
+            	if(max<arr[b])
+            	{
+            		max=arr[b];
+				}
+			}
+			cout<<"\n The Maximum number is : "<<max<<endl;
+			
+		}
+		//finding 2nd largest number
+		else if(choice==8)
+		{
+			int max1;
+			int max2;
+			cout<< "Enter "<<size<<" elements: "<<endl; 
+			     //data add krna yahan
+            for (int a=0; a<size; a++) 
+			{
+                cout<<"Enter element "<<a+1<<" : ";
+                cin>>arr[a];
+            }
+            
+            max1=arr[0];
+            max2=0;
+            
+            for(int b=0;b<size;b++)
+            {
+            	if(max1<arr[b])
+            	{
+            		max2=max1;
+            		max1=arr[b];
+				}
+			}
+			cout<<"\n The 2nd largest number is : "<<max2<<endl;
+			
+		}
+		
+	  cout<<endl;
+	  cout<<"Do you want to continue (y/n) : ";
+	  cin>>ch;
+		if(ch=='y')
+		{
+			i++;
+		}
+	   }
+	   while(ch!='n');       
+}
